@@ -31,7 +31,7 @@ Item {
                     icon.source: control.icon//Qt.resolvedUrl("qrc:/icons/icon_1.svg")
                     display: AbstractButton.IconOnly
                     checkable: true
-                    onClicked: channelBtn.checked ? change0.start() : acccentRect.startAnimation1()
+                    onReleased: channelBtn.checked ? change0.start() : acccentRect.startAnimation1()
                     //按钮灰色衬底
                     background: Rectangle {
                         id: base
@@ -65,7 +65,7 @@ Item {
                                         target: acccentRect
                                         property: "height"
                                         to: channelBtn.height
-                                        duration: 100
+                                        duration: 150
                                         easing.type: Easing.InQuad
                                     }
 
@@ -73,13 +73,13 @@ Item {
                                         target: channelBtn
                                         property: "icon.color"
                                         to: "black"
-                                        duration: 100
+                                        duration: 150
                                     }
                                     NumberAnimation{
                                         target: indicatorLine
                                         property: "width"
                                         to: indicatorLineFrame.width
-                                        duration: 100
+                                        duration: 150
                                     }
 
 
@@ -103,7 +103,7 @@ Item {
                                     target: acccentRect
                                     property: "height"
                                     to: 0
-                                    duration: 100
+                                    duration: 150
                                     easing.type: Easing.InQuad
                                 }
 
@@ -111,14 +111,14 @@ Item {
                                     target: channelBtn
                                     property: "icon.color"
                                     to: "white"
-                                    duration: 100
+                                    duration: 150
                                 }
 
                                 NumberAnimation{
                                     target: indicatorLine
                                     property: "width"
                                     to: 0
-                                    duration: 100
+                                    duration: 150
                                 }
                             }
                             PropertyAction {
@@ -135,7 +135,7 @@ Item {
                     Layout.preferredWidth: this.height
                     icon.source: "qrc:/icons/icon_minus.svg"
                     display: AbstractButton.IconOnly
-                    Universal.accent: accentColor
+
                 }
                 //增益显示
                 Button {
@@ -156,6 +156,10 @@ Item {
                     Layout.preferredWidth: this.height
                     icon.source: "qrc:/icons/icon_setting.svg"
                     display: AbstractButton.IconOnly
+                    //Universal.accent: "teel"
+                    checkable: true
+                    onReleased: this.checked ? channelMenu.menuChange0():channelMenu.menuChange1()
+
                 }
             }
         }
@@ -171,6 +175,86 @@ Item {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 width: 0
+            }
+        }
+    }
+    Rectangle {
+        id: channelMenu
+        anchors.left: control.left
+        anchors.right: control.right
+        anchors.bottom: control.top
+        height: 200
+        border.color: "white"
+        border.width: 2
+        color: "black"
+        opacity: 0
+        //visible: false
+
+        ColumnLayout {
+            anchors.margins: 10
+            anchors.fill: parent
+            spacing: 10
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+            }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+            }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+            }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+            }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+            }
+
+        }
+
+        function menuChange0()
+        {
+            channelMenu.visible = true
+            menuAnimation0.start()
+        }
+
+        function menuChange1()
+        {
+            menuAnimation1.start()
+        }
+
+
+        PropertyAnimation{
+            id: menuAnimation0
+            target: channelMenu
+            property: "opacity"
+            to: 0.5
+            duration: 150
+        }
+
+        SequentialAnimation {
+            id: menuAnimation1
+            PropertyAnimation{
+                target: channelMenu
+                property: "opacity"
+                to: 0
+                duration: 150
+            }
+            PropertyAnimation{
+                target: channelMenu
+                property: "visible"
+                to: false
+                duration: 0
             }
         }
     }

@@ -10,5 +10,8 @@
         <file>icons/icon_3.svg</file>
         <file>icons/icon_4.svg</file>
         <file>icons/logo.png</file>
+        <file>icons/icon_measure.svg</file>
+        <file>icons/icon_cursor.svg</file>
+        <file>icons/icon_storage.svg</file>
     </qresource>
 </RCC>

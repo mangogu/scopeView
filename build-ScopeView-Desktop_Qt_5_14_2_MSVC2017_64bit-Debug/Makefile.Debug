@@ -179,6 +179,7 @@ debug\qrc_qml.cpp: ..\ScopeView\qml.qrc \
 debug\qrc_icons.cpp: ..\ScopeView\icons.qrc \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\rcc.exe \
 		..\ScopeView\icons\icon_minus.svg \
+		..\ScopeView\icons\icon_cursor.svg \
 		..\ScopeView\icons\icon_4.svg \
 		..\ScopeView\icons\icon_M.svg \
 		..\ScopeView\icons\icon_3.svg \
@@ -187,6 +188,8 @@ debug\qrc_icons.cpp: ..\ScopeView\icons.qrc \
 		..\ScopeView\icons\icon_2.svg \
 		..\ScopeView\icons\icon_T.svg \
 		..\ScopeView\icons\icon_plus.svg \
+		..\ScopeView\icons\icon_storage.svg \
+		..\ScopeView\icons\icon_measure.svg \
 		..\ScopeView\icons\icon_1.svg
 	C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\rcc.exe -name icons ..\ScopeView\icons.qrc -o debug\qrc_icons.cpp
 
