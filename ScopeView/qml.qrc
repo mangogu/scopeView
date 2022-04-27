@@ -3,5 +3,11 @@
         <file>main.qml</file>
         <file>IconButton.qml</file>
         <file>ChannelCtr.qml</file>
+        <file>MyMenu.qml</file>
+        <file>MenuCH1.qml</file>
+        <file>MenuTrigger.qml</file>
+        <file>MenuAcquire.qml</file>
+        <file>MenuCH2.qml</file>
+        <file>AttributesCH1.qml</file>
     </qresource>
 </RCC>

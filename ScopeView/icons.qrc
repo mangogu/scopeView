@@ -13,5 +13,7 @@
         <file>icons/icon_measure.svg</file>
         <file>icons/icon_cursor.svg</file>
         <file>icons/icon_storage.svg</file>
+        <file>AttributesCH1.qml</file>
+        <file>AttributesAcquire.qml</file>
     </qresource>
 </RCC>

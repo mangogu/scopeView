@@ -170,13 +170,21 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_qml.cpp release\qrc_icons.cpp release\qrc_qmake_qmake_immediate.cpp
 release\qrc_qml.cpp: ..\ScopeView\qml.qrc \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\rcc.exe \
+		..\ScopeView\MenuTrigger.qml \
+		..\ScopeView\MenuCH2.qml \
+		..\ScopeView\MyMenu.qml \
+		..\ScopeView\MenuCH1.qml \
 		..\ScopeView\ChannelCtr.qml \
 		..\ScopeView\IconButton.qml \
+		..\ScopeView\MenuAcquire.qml \
+		..\ScopeView\AttributesCH1.qml \
 		..\ScopeView\main.qml
 	C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\rcc.exe -name qml ..\ScopeView\qml.qrc -o release\qrc_qml.cpp
 
 release\qrc_icons.cpp: ..\ScopeView\icons.qrc \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\rcc.exe \
+		..\ScopeView\AttributesAcquire.qml \
+		..\ScopeView\AttributesCH1.qml \
 		..\ScopeView\icons\icon_minus.svg \
 		..\ScopeView\icons\icon_cursor.svg \
 		..\ScopeView\icons\icon_4.svg \

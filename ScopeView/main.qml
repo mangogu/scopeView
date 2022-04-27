@@ -35,94 +35,8 @@ ApplicationWindow {
         opacity: 0.8
         clip: true
 
-        Rectangle {
-            id: rect
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            width: parent.width/3
-            color: "black"
-            ListView {
-                id: list
-                anchors.fill: parent
-                interactive: false
-                model: ListModel {
-                    ListElement {
-                        name: "Trigger"
-                        iconSource: "qrc:/icons/icon_measure.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Measure"
-                        iconSource: "qrc:/icons/icon_measure.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Acquire"
-                        iconSource: "qrc:/icons/icon_cursor.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Storage"
-                        iconSource: "qrc:/icons/icon_storage.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Cursor"
-                        iconSource: "qrc:/icons/icon_cursor.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Display"
-                        iconSource: "qrc:/icons/icon_storage.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Utility"
-                        iconSource: "qrc:/icons/icon_storage.svg"
-                        //iconSource:
-                    }
-                    ListElement {
-                        name: "Measure"
-                        iconSource: "qrc:/icons/icon_storage.svg"
-                        //iconSource:
-                    }
-                }
+        MyMenu {
 
-                highlightFollowsCurrentItem: false
-
-                highlight: Component {
-                    id: highlight
-                    Rectangle {
-                        width: 10
-                        height: rect.height/8
-                        color: "white"
-                        opacity: 0.5
-                        y: list.currentItem.y
-                        Behavior on y {
-                            SpringAnimation {
-                                spring: 10
-                                damping: 0.5
-                                mass: 1
-                            }
-                        }
-                    }
-                }
-
-                delegate: Button {
-                    id: button
-                    width: parent.width
-                    text: name
-                    height: rect.height/8
-                    icon.height: 20
-                    icon.width: 20
-                    icon.source: iconSource
-                    display: AbstractButton.TextUnderIcon
-                    onReleased: {
-                        list.currentIndex = index
-                    }
-                }
-            }
         }
     }
 
@@ -135,7 +49,6 @@ ApplicationWindow {
                 onClicked: menu.open()
             }
             Label {
-                text: "ScopeView"
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
@@ -143,7 +56,7 @@ ApplicationWindow {
             }
             ToolButton {
                 id: fileButton;
-                text: qsTr("⋮")
+//                text: qsTr("⋮")
                 onClicked: menu.open()
 
             }
@@ -218,7 +131,6 @@ ApplicationWindow {
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
-
 
         }
         RowLayout {
