@@ -16,31 +16,30 @@ Rectangle {
         model:ListModel {
             ListElement
             {
+                label: "Type"
+                attributes:
+                    [
+                    ListElement { description: "Off" },
+                    ListElement { description: "On" }
+                ]
+            }
+            ListElement
+            {
                 label: "Mode"
                 attributes:
                     [
-                    ListElement { description: "Normal" },
-                    ListElement { description: "Peak" },
-                    ListElement { description: "High Res" },
-                    ListElement { description: "Average" }
+                    ListElement { description: "Off" },
+                    ListElement { description: "Time" },
+                    ListElement { description: "Amplitude" }
                 ]
             }
             ListElement
             {
-                label: "Acquire Mode"
+                label: "V Units"
                 attributes:
                     [
-                    ListElement { description: "Equivalent" },
-                    ListElement { description: "Real-time" }
-                ]
-            }
-            ListElement
-            {
-                label: "FastAcq"
-                attributes:
-                    [
-                    ListElement { description: "Coarse" },
-                    ListElement { description: "Fine" }
+                    ListElement { description: "Second" },
+                    ListElement { description: "Hertz" }
                 ]
             }
         }

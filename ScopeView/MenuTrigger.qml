@@ -9,10 +9,8 @@ Rectangle {
     color: "black"
 
     ListView {
-        id: channel1Menu
         anchors.fill: parent
         anchors.margins: 10
-        interactive: false
         spacing: 10
 
         model:ListModel {

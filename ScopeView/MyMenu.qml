@@ -28,7 +28,6 @@ Item {
             onCurrentIndexChanged: myloader.source = getloader()
             id: list
             anchors.fill: parent
-            interactive: false
 
             function getloader()
             {
@@ -39,15 +38,27 @@ Item {
                 else if (currentIndex == 1){
                     return "/MenuCH2.qml"
                 }
-//                else if (currentIndex == 2){
-//                    return "/MenuTrigger.qml"
-//                }
-//                else if (currentIndex == 3){
-//                    return "/MenuTrigger.qml"
-//                }
-//                else if (currentIndex == 4){
-//                    return "/MenuTrigger.qml"
-//                }
+                else if (currentIndex == 2){
+                    return "/MenuTrigger.qml"
+                }
+                else if (currentIndex == 3){
+                    return "/MenuMeasure.qml"
+                }
+                else if (currentIndex == 4){
+                    return "/MenuCursor.qml"
+                }
+                else if (currentIndex == 5){
+                    return "/MenuAcquire.qml"
+                }
+                else if (currentIndex == 6){
+                    return "/MenuDisplay.qml"
+                }
+                else if (currentIndex == 7){
+                    return "/MenuStorage.qml"
+                }
+                else if (currentIndex == 8){
+                    return "/MenuUtility.qml"
+                }
             }
 
             model: ListModel {
@@ -77,18 +88,23 @@ Item {
                     //iconSource:
                 }
                 ListElement {
+                    name: "Acquire"
+                    iconSource: "qrc:/icons/icon_acquire.svg"
+                    //iconSource:
+                }
+                ListElement {
                     name: "Display"
+                    iconSource: "qrc:/icons/icon_display.svg"
+                    //iconSource:
+                }
+                ListElement {
+                    name: "Storage"
                     iconSource: "qrc:/icons/icon_storage.svg"
                     //iconSource:
                 }
                 ListElement {
                     name: "Utility"
-                    iconSource: "qrc:/icons/icon_storage.svg"
-                    //iconSource:
-                }
-                ListElement {
-                    name: "Measure"
-                    iconSource: "qrc:/icons/icon_storage.svg"
+                    iconSource: "qrc:/icons/icon_utility.svg"
                     //iconSource:
                 }
             }
@@ -98,7 +114,7 @@ Item {
             highlight: Component {
                 id: highlight
                 Rectangle {
-                    width: 10
+                    width: 5
                     height: leftRect.height/8
                     color: "white"
                     opacity: 0.5
@@ -118,8 +134,8 @@ Item {
                 width: parent.width
                 text: name
                 height: leftRect.height/8
-                icon.height: 20
-                icon.width: 20
+                icon.height: 30
+                icon.width: 30
                 icon.source: iconSource
                 display: AbstractButton.TextUnderIcon
                 onReleased: {

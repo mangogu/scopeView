@@ -299,8 +299,8 @@ Makefile: ..\ScopeView\ScopeView.pro C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\w
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Core.prl \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\qtmain.prl \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\build_pass.prf \
-		..\ScopeView\qml.qrc \
 		..\ScopeView\icons.qrc \
+		..\ScopeView\qml.qrc \
 		debug\qmake_qmake_immediate.qrc \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Quickd.prl \
 		C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Guid.prl \
@@ -526,8 +526,8 @@ C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Network.prl:
 C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Core.prl:
 C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\qtmain.prl:
 C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\build_pass.prf:
-..\ScopeView\qml.qrc:
 ..\ScopeView\icons.qrc:
+..\ScopeView\qml.qrc:
 debug\qmake_qmake_immediate.qrc:
 C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Quickd.prl:
 C:\Qt\Qt5.14.2\5.14.2\msvc2017_64\lib\Qt5Guid.prl:

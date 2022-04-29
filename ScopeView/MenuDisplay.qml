@@ -9,6 +9,7 @@ Rectangle {
     color: "black"
 
     ListView {
+        id: listview
         anchors.fill: parent
         anchors.margins: 10
         spacing: 10
@@ -16,31 +17,37 @@ Rectangle {
         model:ListModel {
             ListElement
             {
-                label: "Mode"
+                key: "first"
+                label: "Format"
                 attributes:
                     [
-                    ListElement { description: "Normal" },
-                    ListElement { description: "Peak" },
-                    ListElement { description: "High Res" },
-                    ListElement { description: "Average" }
+                    ListElement { description: "Vector" },
+                    ListElement { description: "Dots" }
                 ]
             }
             ListElement
             {
-                label: "Acquire Mode"
+                key: "middle"
+                label: "Persist Time"
                 attributes:
                     [
-                    ListElement { description: "Equivalent" },
-                    ListElement { description: "Real-time" }
+                    ListElement { description: "Off" },
+                    ListElement { description: "Auto" },
+                    ListElement { description: "Short Persist" },
+                    ListElement { description: "Long Persist" },
+                    ListElement { description: "Unlimited" }
                 ]
             }
             ListElement
             {
-                label: "FastAcq"
+                key: "last"
+                label: "Graticule"
                 attributes:
                     [
-                    ListElement { description: "Coarse" },
-                    ListElement { description: "Fine" }
+                    ListElement { description: "Full" },
+                    ListElement { description: "Grid" },
+                    ListElement { description: "Cross Hair" },
+                    ListElement { description: "Frame" }
                 ]
             }
         }
@@ -54,10 +61,12 @@ Rectangle {
                 Layout.preferredWidth: parent.width/2
             }
             ComboBox {
+                id: key
                 model: attributes
                 Layout.fillWidth: true
             }
         }
     }
+
 }
 
