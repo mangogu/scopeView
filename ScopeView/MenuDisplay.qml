@@ -9,7 +9,7 @@ Rectangle {
     color: "black"
 
     ListView {
-        id: listview
+        id:list
         anchors.fill: parent
         anchors.margins: 10
         spacing: 10
@@ -24,6 +24,7 @@ Rectangle {
                     ListElement { description: "Vector" },
                     ListElement { description: "Dots" }
                 ]
+                itemType: "labelCombobox"
             }
             ListElement
             {
@@ -37,6 +38,7 @@ Rectangle {
                     ListElement { description: "Long Persist" },
                     ListElement { description: "Unlimited" }
                 ]
+                itemType: "labelCombobox"
             }
             ListElement
             {
@@ -49,24 +51,71 @@ Rectangle {
                     ListElement { description: "Cross Hair" },
                     ListElement { description: "Frame" }
                 ]
+                itemType: "labelCombobox"
+            }
+            ListElement
+            {
+                key: "last"
+                label: "123"
+                attributes:
+                    [
+                    ListElement { description: "Full" },
+                    ListElement { description: "Grid" },
+                    ListElement { description: "Cross Hair" },
+                    ListElement { description: "Frame" }
+                ]
+                itemType: "labelSpinbox"
             }
         }
 
 
-        delegate: ColumnLayout {
+        delegate: Item {
             width: parent.width
-
-            Label {
-                text: label
-                Layout.preferredWidth: parent.width/2
+            implicitHeight: loader.implicitHeight
+            Loader {
+                id: loader
+                width: parent.width
+                sourceComponent: switch (itemType) {
+                    case "labelCombobox": return labelCombobox
+                    case "labelSpinbox": return labelSpinbox
+                }
             }
-            ComboBox {
-                id: key
-                model: attributes
-                Layout.fillWidth: true
+
+            Component {
+                id: labelCombobox
+                ColumnLayout {
+                    width: parent.width
+                    Label {
+                        text: label
+                        Layout.preferredWidth: parent.width/2
+                    }
+                    ComboBox {
+                        model: attributes
+                        Layout.fillWidth: true
+                    }
+                }
+            }
+
+            Component {
+                id: labelSpinbox
+                ColumnLayout {
+                    width: parent.width
+                    Label {
+                        text: label
+                        Layout.preferredWidth: parent.width/2
+                    }
+                    SpinBox {
+                        value: 0
+                        Layout.fillWidth: true
+                    }
+                }
             }
         }
-    }
 
+
+
+    }
 }
+
+
 

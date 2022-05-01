@@ -20,20 +20,21 @@ ApplicationWindow {
         opacity: 0.08
         sourceSize.width: 200
         sourceSize.height: 200
-        anchors.horizontalCenter: rowLayout.horizontalCenter
-        anchors.verticalCenter: rowLayout.verticalCenter
+        anchors {
+            horizontalCenter: rowLayout.horizontalCenter
+            verticalCenter: rowLayout.verticalCenter
+        }
     }
 
     Drawer {
         id: menu
         width: 0.3 * parent.width
-        y: header.height
         height: parent.height - header.height
+        y: header.height
         //dragMargin: parent.width * 0.1; //拉动开始生效的区域，最低为0，也就是0的位置拖动才有效
         edge: Qt.RightEdge
         dim: false
         opacity: 0.8
-        clip: true
 
         MyMenu {
 
@@ -56,7 +57,7 @@ ApplicationWindow {
             }
             ToolButton {
                 id: fileButton;
-//                text: qsTr("⋮")
+                //                text: qsTr("⋮")
                 onClicked: menu.open()
 
             }

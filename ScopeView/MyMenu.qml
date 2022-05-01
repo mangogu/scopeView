@@ -10,11 +10,13 @@ Item {
 
     Loader{
         id: myloader
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: leftRect.right
 
+        anchors {
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
+            left: leftRect.right
+        }
     }
 
     Rectangle {
@@ -31,7 +33,7 @@ Item {
 
             function getloader()
             {
-                if (currentIndex == 0)
+                if (currentIndex === 0)
                 {
                     return "/MenuCH1.qml"
                 }
@@ -131,12 +133,14 @@ Item {
 
             delegate: Button {
                 id: button
-                width: parent.width
                 text: name
+                width: parent.width
                 height: leftRect.height/8
-                icon.height: 30
-                icon.width: 30
-                icon.source: iconSource
+                icon {
+                    height: 30
+                    width: 30
+                    source: iconSource
+                }
                 display: AbstractButton.TextUnderIcon
                 onReleased: {
                     list.currentIndex = index

@@ -13,7 +13,10 @@ Rectangle {
         anchors.margins: 10
         spacing: 10
 
-        model: ListModel {
+        model: ch1Content
+
+            ListModel {
+            id:ch1Content
             ListElement
             {
                 label: "Coupling"

@@ -33,3 +33,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES +=
+
+HEADERS += \
+    ../../test/test/myobject.h \
+    ../../test1/dsda.h \
+    ../../test1/myobject.h
