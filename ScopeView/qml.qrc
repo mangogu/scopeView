@@ -8,7 +8,6 @@
         <file>MenuTrigger.qml</file>
         <file>MenuAcquire.qml</file>
         <file>MenuCH2.qml</file>
-        <file>MenuMeasure.qml</file>
         <file>MenuUtility.qml</file>
         <file>MenuStorage.qml</file>
         <file>MenuDisplay.qml</file>

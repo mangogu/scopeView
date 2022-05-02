@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<RCC>
+    <qresource prefix="/">
+        <file alias="main.qml">../ScopeView/main.qml</file>
+        <file alias="IconButton.qml">../ScopeView/IconButton.qml</file>
+        <file alias="ChannelCtr.qml">../ScopeView/ChannelCtr.qml</file>
+        <file alias="MyMenu.qml">../ScopeView/MyMenu.qml</file>
+        <file alias="MenuCH1.qml">../ScopeView/MenuCH1.qml</file>
+        <file alias="MenuTrigger.qml">../ScopeView/MenuTrigger.qml</file>
+        <file alias="MenuAcquire.qml">../ScopeView/MenuAcquire.qml</file>
+        <file alias="MenuCH2.qml">../ScopeView/MenuCH2.qml</file>
+        <file alias="MenuMeasure.qml">../ScopeView/MenuMeasure.qml</file>
+        <file alias="MenuUtility.qml">../ScopeView/MenuUtility.qml</file>
+        <file alias="MenuStorage.qml">../ScopeView/MenuStorage.qml</file>
+        <file alias="MenuDisplay.qml">../ScopeView/MenuDisplay.qml</file>
+        <file alias="MenuCursor.qml">../ScopeView/MenuCursor.qml</file>
+    </qresource>
+</RCC>

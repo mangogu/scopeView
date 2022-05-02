@@ -9,9 +9,9 @@ Item {
     Layout.fillWidth: true
 
     //通道标志色
-    property var accentColor: "yellow"
+    property string accentColor: "yellow"
     //通道图标
-    property var icon: "qrc:/icons/icon_1.svg"
+    property string icon: "qrc:/icons/icon_1.svg"
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
@@ -167,7 +167,7 @@ Item {
             id: indicatorLineFrame
             color: channelBtn.pressed  ? Qt.lighter("grey", 1.2) : (channelBtn.hovered ? Qt.darker("grey", 1.2) : "#33FFFFFF")
             Layout.fillWidth: true
-            Layout.preferredHeight: 2
+            Layout.preferredHeight: window.globalGap/2
             Rectangle {
                 id: indicatorLine
                 color: channelBtn.pressed  ? Qt.darker(accentColor, 1.4) : (channelBtn.hovered ? Qt.darker(accentColor, 1.2) : accentColor)

@@ -3,6 +3,7 @@ import QtQuick.Window 2.14
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Universal 2.12
+import Inifileoperate 1.0
 
 ApplicationWindow {
     id: window
@@ -12,6 +13,16 @@ ApplicationWindow {
     title: qsTr("ScopeView Beta Version0.1")
     color: "black"
     opacity: 0.98
+
+    property int globalGap: window.height/100
+
+    Inifileoperate {
+        id: iniTeleporter
+
+        Component.onCompleted: {
+            iniTeleporter.func()
+        }
+    }
 
     //logo
     Image {
@@ -43,19 +54,25 @@ ApplicationWindow {
 
 
     header: ToolBar {
+        id: topBar
+        height: parent.height/15
         RowLayout {
             anchors.fill: parent
             ToolButton {
+                Layout.preferredHeight: parent.height
                 text: qsTr("‹")
                 onClicked: menu.open()
             }
             Label {
+                Layout.preferredHeight: parent.height
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 Layout.fillWidth: true
+
             }
             ToolButton {
+                Layout.preferredHeight: parent.height
                 id: fileButton;
                 //                text: qsTr("⋮")
                 onClicked: menu.open()
@@ -68,14 +85,20 @@ ApplicationWindow {
 
     ColumnLayout {
         id: rowLayout
-        anchors.fill: parent
-        anchors.margins: 10
-        spacing: 5
+        anchors {
+            top: topBar.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right:parent.right
+        }
+
+        anchors.margins: window.globalGap
+        spacing: window.globalGap
 
         RowLayout {
             Layout.preferredHeight: parent.height/15
             Layout.preferredWidth: parent.width
-            spacing: 4
+            spacing: window.globalGap
 
 
             IconButton{
@@ -137,7 +160,7 @@ ApplicationWindow {
         RowLayout {
             Layout.preferredHeight: parent.height/15
             Layout.preferredWidth: parent.width
-
+            spacing: window.globalGap
             ChannelCtr {
                 accentColor: "yellow"
                 icon: "qrc:/icons/icon_1.svg"

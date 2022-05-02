@@ -7,6 +7,12 @@ import QtQuick.Controls.Universal 2.12
 Rectangle {
     id: rightRect
     color: "black"
+    anchors {
+        right: parent.right
+        top: parent.top
+        bottom: parent.bottom
+        left: leftRect.right
+    }
 
     ListView {
         anchors.fill: parent
