@@ -3,16 +3,14 @@ import QtQuick.Window 2.14
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Universal 2.12
+import Inifileoperate 1.0
 
 Item {
     id: drawerFrame
     anchors.fill: parent
     property alias menuList: menuList
 
-    Component.onCompleted: {
-        console.log(menuList.getList())
-    }
-
+    //rightRect
     Rectangle {
         id: rightRect
         color: "black"
@@ -31,38 +29,69 @@ Item {
 
             model: getList()//getList()
 
-            delegate: ColumnLayout {
+            delegate: Item {
                 width: parent.width
+                implicitHeight: loader.implicitHeight
+                Loader {
+                    id: loader
+                    width: parent.width
+                    sourceComponent: switch (itemType) {
+                                     case "labelCombobox": return labelCombobox
+                                     case "labelSpinbox": return labelSpinbox
+                                     }
 
-                Label {
-                    id: labelId
-                    text: label
-                    Layout.preferredWidth: parent.width/2
                 }
-                ComboBox {
-                    id: comboboxId
-                    model: attributes
-                    Layout.fillWidth: true
-                    property bool initialCompleted: false
-                    onCurrentTextChanged: {
-                        if(initialCompleted) {
-                            console.log(labelId.text,":",comboboxId.currentText,",",comboboxId.currentIndex)
 
+                Component {
+                    id: labelCombobox
+                    ColumnLayout {
+                        width: parent.width
+                        Label {
+                            text: label
+                            Layout.preferredWidth: parent.width/2
+                        }
+                        ComboBox {
+                            id: comboboxId
+                            model: attributes
+                            Layout.fillWidth: true
+                            property bool initialized: false
+                            onCurrentTextChanged: {
+                                if(comboboxId.initialized === true) {
+                                    Inifileoperate.setValue(leftList.currentItem.text,label,comboboxId.currentText)
+                                    console.log(leftList.currentItem.text," ",label," ",comboboxId.currentText)
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                currentIndex = find(Inifileoperate.getValue(leftList.currentItem.text,label))
+                                comboboxId.initialized = true
+                            }
+                        }
+                        Component.onCompleted: {
+                            //配置
+                            //Inifileoperate.setValue(leftList.currentItem.text,label,comboboxId.currentText)
+                            //console.log(leftList.currentItem.text," = ",Inifileoperate.getValue(leftList.currentItem.text,label))
                         }
                     }
-                    Component.onCompleted: {
-                        initialCompleted = true
-                    }
                 }
-                Component.onCompleted: {
-                    //设置配置文件路径
-                    iniTeleporter.setFileName(iniDir);
-                    //配置
-                    iniTeleporter.setValue(leftList.currentItem.text,label,comboboxId.currentText)
-                    //console.log(iniTeleporter.getValue(leftList.currentItem.text,label))
+
+                Component {
+                    id: labelSpinbox
+                    ColumnLayout {
+                        width: parent.width
+                        Label {
+                            text: label
+                            Layout.preferredWidth: parent.width/2
+                        }
+                        SpinBox {
+                            value: 0
+                            Layout.fillWidth: true
+                        }
+                    }
                 }
             }
 
+            //获取列表
             function getList()
             {
                 if (leftList.currentIndex === 0){
@@ -80,18 +109,18 @@ Item {
                 else if (leftList.currentIndex === 4){
                     return cursorContent
                 }
-                else if (currentIndex === 5){
-                    return "/MenuAcquire.qml"
+                else if (leftList.currentIndex === 5){
+                    return acquireContent
                 }
-                else if (currentIndex === 6){
-                    return "/MenuDisplay.qml"
+                else if (leftList.currentIndex === 6){
+                    return displayContent
                 }
-                else if (currentIndex === 7){
-                    return "/MenuStorage.qml"
-                }
-                else if (currentIndex === 8){
-                    return "/MenuUtility.qml"
-                }
+                //                else if (leftList.currentIndex === 7){
+                //                    return storageContent
+                //                }
+                //                else if (leftList.currentIndex === 8){
+                //                    return utilityContent
+                //                }
             }
 
             //CH1 菜单内容
@@ -116,6 +145,7 @@ Item {
                         ListElement { description: "FULL" },
                         ListElement { description: "20MHz" }
                     ]
+                    itemType: "labelCombobox"
                 }
                 ListElement
                 {
@@ -150,7 +180,7 @@ Item {
                 }
                 ListElement
                 {
-                    label: "Uint"
+                    label: "Unit"
                     attributes:
                         [
                         ListElement { description: "V" },
@@ -217,7 +247,7 @@ Item {
                 }
                 ListElement
                 {
-                    label: "Uint"
+                    label: "Unit"
                     attributes:
                         [
                         ListElement { description: "V" },
@@ -227,62 +257,7 @@ Item {
                 }
             }
 
-            ListModel {
-                ListElement
-                {
-                    label: "Type"
-                    attributes:
-                        [
-                        ListElement { description: "Edge" },
-                        ListElement { description: "Pulse" },
-                        ListElement { description: "Slope" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-                ListElement
-                {
-                    label: "Source"
-                    attributes:
-                        [
-                        ListElement { description: "CH 1" },
-                        ListElement { description: "CH 2" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-                ListElement
-                {
-                    label: "Coupling"
-                    attributes:
-                        [
-                        ListElement { description: "DC" },
-                        ListElement { description: "AC" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-                ListElement
-                {
-                    label: "Mode"
-                    attributes:
-                        [
-                        ListElement { description: "Auto" },
-                        ListElement { description: "Normal" },
-                        ListElement { description: "Single" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-                ListElement
-                {
-                    label: "Slope"
-                    attributes:
-                        [
-                        ListElement { description: "Rise" },
-                        ListElement { description: "Fall" },
-                        ListElement { description: "Fall" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-            }
-
+            //trigger 菜单内容
             ListModel {
                 id: triggerContent
                 ListElement
@@ -334,59 +309,40 @@ Item {
                         [
                         ListElement { description: "Rise" },
                         ListElement { description: "Fall" },
-                        ListElement { description: "Fall" }
+                        ListElement { description: "Rise-Fall" }
                     ]
                     itemType: "labelCombobox"
                 }
             }
 
+            //measure 菜单内容
             ListModel {
                 id: measureContent
                 ListElement
                 {
-                    label: "Coupling"
+                    label: "MasterSrc"
                     attributes:
                         [
-                        ListElement { description: "DC 1MΩ" },
-                        ListElement { description: "AC 1MΩ" },
-                        ListElement { description: "GND" }
+                        ListElement { description: "CH 1" },
+                        ListElement { description: "CH 2" },
+                        ListElement { description: "MATH" }
                     ]
                     itemType: "labelCombobox"
                 }
                 ListElement
                 {
-                    label: "BW Limit"
+                    label: "SlaveSrc"
                     attributes:
                         [
-                        ListElement { description: "FULL" },
-                        ListElement { description: "20MHz" }
+                        ListElement { description: "CH 1" },
+                        ListElement { description: "CH 2" },
+                        ListElement { description: "MATH" }
                     ]
                     itemType: "labelCombobox"
                 }
                 ListElement
                 {
-                    label: "Volts/Div"
-                    attributes:
-                        [
-                        ListElement { description: "Coarse" },
-                        ListElement { description: "Fine" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-                ListElement
-                {
-                    label: "Probe"
-                    attributes:
-                        [
-                        ListElement { description: "1x" },
-                        ListElement { description: "10x" },
-                        ListElement { description: "100x" }
-                    ]
-                    itemType: "labelCombobox"
-                }
-                ListElement
-                {
-                    label: "Invert"
+                    label: "All Para"
                     attributes:
                         [
                         ListElement { description: "Off" },
@@ -394,17 +350,9 @@ Item {
                     ]
                     itemType: "labelCombobox"
                 }
-                ListElement
-                {
-                    label: "Uint"
-                    attributes:
-                        [
-                        ListElement { description: "V" },
-                        ListElement { description: "A" }
-                    ]
-                    itemType: "labelCombobox"
-                }
             }
+
+            //cursor 菜单内容
             ListModel {
                 id: cursorContent
                 ListElement
@@ -415,6 +363,7 @@ Item {
                         ListElement { description: "Off" },
                         ListElement { description: "On" }
                     ]
+                    itemType: "labelCombobox"
                 }
                 ListElement
                 {
@@ -425,6 +374,7 @@ Item {
                         ListElement { description: "Time" },
                         ListElement { description: "Amplitude" }
                     ]
+                    itemType: "labelCombobox"
                 }
                 ListElement
                 {
@@ -434,6 +384,176 @@ Item {
                         ListElement { description: "Second" },
                         ListElement { description: "Hertz" }
                     ]
+                    itemType: "labelCombobox"
+                }
+            }
+
+            //acquire 菜单内容
+            ListModel {
+                id: acquireContent
+                ListElement
+                {
+                    label: "Mode"
+                    attributes:
+                        [
+                        ListElement { description: "Normal" },
+                        ListElement { description: "Peak" },
+                        ListElement { description: "High Res" },
+                        ListElement { description: "Average" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "Acquire Mode"
+                    attributes:
+                        [
+                        ListElement { description: "Equivalent" },
+                        ListElement { description: "Real-time" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "FastAcq"
+                    attributes:
+                        [
+                        ListElement { description: "Coarse" },
+                        ListElement { description: "Fine" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+            }
+
+            //display 菜单内容
+            ListModel {
+                id: displayContent
+                ListElement
+                {
+                    label: "Format"
+                    attributes:
+                        [
+                        ListElement { description: "Vector" },
+                        ListElement { description: "Dots" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "Persist Time"
+                    attributes:
+                        [
+                        ListElement { description: "Off" },
+                        ListElement { description: "Auto" },
+                        ListElement { description: "Short Persist" },
+                        ListElement { description: "Long Persist" },
+                        ListElement { description: "Unlimited" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "Wave Intensity"
+                    value: 100
+                    itemType: "labelSpinbox"
+                }
+                ListElement
+                {
+                    label: "Grid Bright"
+                    value: 100
+                    itemType: "labelSpinbox"
+                }
+                ListElement
+                {
+                    label: "BackLight"
+                    value: 100
+                    itemType: "labelSpinbox"
+                }
+                ListElement
+                {
+                    label: "Graticule"
+                    attributes:
+                        [
+                        ListElement { description: "Full" },
+                        ListElement { description: "Grid" },
+                        ListElement { description: "Cross Hair" },
+                        ListElement { description: "Frame" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+            }
+
+            //storage 菜单内容
+            ListModel {
+                id: storageContent
+                ListElement
+                {
+                    label: "Mode"
+                    attributes:
+                        [
+                        ListElement { description: "Normal" },
+                        ListElement { description: "Peak" },
+                        ListElement { description: "High Res" },
+                        ListElement { description: "Average" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "Acquire Mode"
+                    attributes:
+                        [
+                        ListElement { description: "Equivalent" },
+                        ListElement { description: "Real-time" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "FastAcq"
+                    attributes:
+                        [
+                        ListElement { description: "Coarse" },
+                        ListElement { description: "Fine" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+            }
+
+            //utility 菜单内容
+            ListModel {
+                id: utilityContent
+                ListElement
+                {
+                    label: "Mode"
+                    attributes:
+                        [
+                        ListElement { description: "Normal" },
+                        ListElement { description: "Peak" },
+                        ListElement { description: "High Res" },
+                        ListElement { description: "Average" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "Acquire Mode"
+                    attributes:
+                        [
+                        ListElement { description: "Equivalent" },
+                        ListElement { description: "Real-time" }
+                    ]
+                    itemType: "labelCombobox"
+                }
+                ListElement
+                {
+                    label: "FastAcq"
+                    attributes:
+                        [
+                        ListElement { description: "Coarse" },
+                        ListElement { description: "Fine" }
+                    ]
+                    itemType: "labelCombobox"
                 }
             }
         }

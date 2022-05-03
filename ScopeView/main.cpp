@@ -38,16 +38,25 @@ int main(int argc, char *argv[])
     //获取应用程序路径
     exeDir = app.applicationDirPath();
 
-    iniConfig();
+    //config.ini保存路径为 exepath/config.ini
+    Inifileoperate* iniInstance = new Inifileoperate;
+    iniInstance->setFileName(exeDir.append("/config.ini"));
 
+//    iniDir = iniInstance->getFileName();
 
+//    qDebug()<<iniInstance->getFileName();
+
+//    iniInstance->setValue("func", "teacher","什么");
+
+//    QString temp  = iniInstance->getValue("func","teacher");
+
+//    qDebug()<<time;
 
     QQmlApplicationEngine engine;
 
-    QQmlContext* context =  engine.rootContext();
-    context->setContextProperty("iniDir", iniDir);
+    //qmlRegisterType<Inifileoperate>("Inifileoperate",1,0,"Inifileoperate");
 
-    qmlRegisterType<Inifileoperate>("Inifileoperate",1,0,"Inifileoperate");
+    qmlRegisterSingletonInstance<Inifileoperate>("Inifileoperate",1,0,"Inifileoperate",iniInstance);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

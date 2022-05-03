@@ -13,8 +13,8 @@ class Inifileoperate : public QObject
 public:
     explicit Inifileoperate(QObject *parent = nullptr);
 
-    Q_INVOKABLE const QString &getFileName() const;
-    Q_INVOKABLE void setFileName(const QString &newFileName);
+    const QString &getFileName() const;
+    void setFileName(const QString &newFileName);
 
     Q_INVOKABLE QString getValue(QString group, QString name);
     Q_INVOKABLE void setValue(QString group, QString name, QString value);

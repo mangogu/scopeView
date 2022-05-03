@@ -3,7 +3,6 @@ import QtQuick.Window 2.14
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Universal 2.12
-import Inifileoperate 1.0
 
 ApplicationWindow {
     id: window
@@ -16,13 +15,13 @@ ApplicationWindow {
 
     property int globalGap: window.height/100
 
-    Inifileoperate {
-        id: iniTeleporter
+//    Inifileoperate {
+//        id: iniTeleporter
 
-        Component.onCompleted: {
-            iniTeleporter.func()
-        }
-    }
+//        Component.onCompleted: {
+//            iniTeleporter.func()
+//        }
+//    }
 
     //logo
     Image {

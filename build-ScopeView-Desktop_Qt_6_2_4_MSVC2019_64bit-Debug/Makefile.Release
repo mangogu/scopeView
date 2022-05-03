@@ -199,17 +199,12 @@ release\qrc_icons.cpp: ..\ScopeView\icons.qrc \
 
 release\qrc_qml.cpp: ..\ScopeView\qml.qrc \
 		C:\Qt\6.2.4\msvc2019_64\bin\rcc.exe \
-		..\ScopeView\ChannelCtr.qml \
-		..\ScopeView\MenuCH2.qml \
 		..\ScopeView\IconButton.qml \
 		..\ScopeView\MenuTrigger.qml \
-		..\ScopeView\MenuDisplay.qml \
-		..\ScopeView\MenuCH1.qml \
+		..\ScopeView\ChannelCtr.qml \
 		..\ScopeView\MenuUtility.qml \
-		..\ScopeView\MenuStorage.qml \
 		..\ScopeView\main.qml \
 		..\ScopeView\MenuCursor.qml \
-		..\ScopeView\MenuAcquire.qml \
 		..\ScopeView\MyMenu.qml
 	C:\Qt\6.2.4\msvc2019_64\bin\rcc.exe -name qml ..\ScopeView\qml.qrc -o release\qrc_qml.cpp
 

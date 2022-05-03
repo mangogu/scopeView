@@ -4,13 +4,8 @@
         <file>IconButton.qml</file>
         <file>ChannelCtr.qml</file>
         <file>MyMenu.qml</file>
-        <file>MenuCH1.qml</file>
         <file>MenuTrigger.qml</file>
-        <file>MenuAcquire.qml</file>
-        <file>MenuCH2.qml</file>
         <file>MenuUtility.qml</file>
-        <file>MenuStorage.qml</file>
-        <file>MenuDisplay.qml</file>
         <file>MenuCursor.qml</file>
     </qresource>
 </RCC>
